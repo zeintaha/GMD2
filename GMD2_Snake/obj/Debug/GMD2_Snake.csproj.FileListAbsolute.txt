@@ -6,3 +6,4 @@ C:\Users\Avalin\Documents\Visual Studio Projects\GMD2_SnakeProject\GMD2_Snake\ob
 C:\Users\Avalin\Documents\Visual Studio Projects\GMD2_SnakeProject\GMD2_Snake\obj\Debug\GMD2_Snake.csproj.GenerateResource.cache
 C:\Users\Avalin\Documents\Visual Studio Projects\GMD2_SnakeProject\GMD2_Snake\obj\Debug\GMD2_Snake.exe
 C:\Users\Avalin\Documents\Visual Studio Projects\GMD2_SnakeProject\GMD2_Snake\obj\Debug\GMD2_Snake.pdb
+C:\Users\Avalin\Documents\Visual Studio Projects\GMD2_SnakeProject\GMD2_Snake\obj\Debug\GMD2_Snake.SnakeWindowForm.resources

@@ -16,7 +16,10 @@ namespace GMD2_Snake
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+
+            SnakeWindowForm swf = new SnakeWindowForm();
+            swf.Text = "GMD2 - Snake";
+            Application.Run(swf);
         }
     }
 }

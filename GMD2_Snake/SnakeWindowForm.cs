@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace GMD2_Snake
 {
-    public partial class Form1 : Form
+    public partial class SnakeWindowForm : Form
     {
-        public Form1()
+        public SnakeWindowForm()
         {
             InitializeComponent();
+        }
+
+        private void SnakeWindow_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
