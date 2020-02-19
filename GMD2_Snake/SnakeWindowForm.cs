@@ -15,9 +15,24 @@ namespace GMD2_Snake
         public SnakeWindowForm()
         {
             InitializeComponent();
+            GameLoop();
         }
 
         private void SnakeWindow_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        async void GameLoop()
+        {
+            while (true)
+            {
+                await Task.Delay(100);
+                test_textBox.Text = DateTime.Now.ToString();
+            }
+        }
+
+        private void test_textBox_TextChanged(object sender, EventArgs e)
         {
 
         }

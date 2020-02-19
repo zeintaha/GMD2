@@ -28,21 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.test_textBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // SnakeWindow
+            // test_textBox
+            // 
+            this.test_textBox.Location = new System.Drawing.Point(221, 192);
+            this.test_textBox.Name = "test_textBox";
+            this.test_textBox.Size = new System.Drawing.Size(378, 20);
+            this.test_textBox.TabIndex = 0;
+            this.test_textBox.TextChanged += new System.EventHandler(this.test_textBox_TextChanged);
+            // 
+            // SnakeWindowForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "SnakeWindow";
+            this.Controls.Add(this.test_textBox);
+            this.Name = "SnakeWindowForm";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.SnakeWindow_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
+
+        private System.Windows.Forms.TextBox test_textBox;
     }
 }
 
