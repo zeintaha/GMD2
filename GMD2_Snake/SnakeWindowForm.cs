@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,6 @@ namespace GMD2_Snake
         public SnakeWindowForm()
         {
             InitializeComponent();
-            GameLoop();
         }
 
         private void SnakeWindow_Load(object sender, EventArgs e)
@@ -23,12 +23,28 @@ namespace GMD2_Snake
 
         }
 
-        async void GameLoop()
+        public void GameLoop()
         {
+            TimeSpan MS_PER_FRAME = TimeSpan.FromMilliseconds(1.0 / 60.0 * 1000.0);
+            Stopwatch stopWatch = Stopwatch.StartNew();
+            TimeSpan previous = stopWatch.Elapsed;
+            TimeSpan lag = new TimeSpan(0);
             while (true)
             {
-                await Task.Delay(100);
-                test_textBox.Text = DateTime.Now.ToString();
+                TimeSpan current = stopWatch.Elapsed;
+                TimeSpan elapsed = current - previous;
+                previous = current;
+                lag += elapsed;
+
+                //Process input
+                while (lag >= MS_PER_FRAME)
+                {
+                    //Update (Game Logic)
+                    lag -= MS_PER_FRAME;
+                }
+                //render
+                test_textBox.Text = "HELLO"+DateTime.Now.ToString();
+                Refresh();
             }
         }
 

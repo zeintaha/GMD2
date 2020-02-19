@@ -20,6 +20,7 @@ namespace GMD2_Snake
             SnakeWindowForm swf = new SnakeWindowForm();
             swf.Text = "GMD2 - Snake";
             Application.Run(swf);
+            swf.GameLoop();
         }
     }
 }
