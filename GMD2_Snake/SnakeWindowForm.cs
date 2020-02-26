@@ -44,7 +44,10 @@ namespace GMD2_Snake
                 }
                 //render
                 test_textBox.Text = "HELLO"+DateTime.Now.ToString();
+
+                //To utilize the GameLoop using Windows Forms, tell the application to do the events
                 Refresh();
+                Application.DoEvents();
             }
         }
 
