@@ -36,19 +36,34 @@ namespace GMD2_Snake
                 previous = current;
                 lag += elapsed;
 
-                //Process input
+                ProcessInput();
                 while (lag >= MS_PER_FRAME)
                 {
-                    //Update (Game Logic)
+                    UpdateGameLogic();
                     lag -= MS_PER_FRAME;
                 }
-                //render
-                test_textBox.Text = "HELLO"+DateTime.Now.ToString();
+                RenderToScreen();
 
                 //To utilize the GameLoop using Windows Forms, tell the application to do the events
                 Refresh();
                 Application.DoEvents();
             }
+        }
+
+        private void ProcessInput()
+        {
+            //Insert Input events here
+        }
+
+        private void RenderToScreen()
+        {
+            //Insert Render events here
+            test_textBox.Text = "HELLO" + DateTime.Now.ToString();
+        }
+
+        private void UpdateGameLogic()
+        {
+            //Insert Game Logic changes here
         }
 
         private void test_textBox_TextChanged(object sender, EventArgs e)
