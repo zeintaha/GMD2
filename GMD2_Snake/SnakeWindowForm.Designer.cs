@@ -28,34 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.test_textBox = new System.Windows.Forms.TextBox();
+            this.bgPB = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.bgPB)).BeginInit();
             this.SuspendLayout();
             // 
-            // test_textBox
+            // bgPB
             // 
-            this.test_textBox.Location = new System.Drawing.Point(221, 192);
-            this.test_textBox.Name = "test_textBox";
-            this.test_textBox.Size = new System.Drawing.Size(378, 20);
-            this.test_textBox.TabIndex = 0;
-            this.test_textBox.TextChanged += new System.EventHandler(this.test_textBox_TextChanged);
+            this.bgPB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.bgPB.Location = new System.Drawing.Point(12, 12);
+            this.bgPB.Name = "bgPB";
+            this.bgPB.Size = new System.Drawing.Size(500, 500);
+            this.bgPB.TabIndex = 0;
+            this.bgPB.TabStop = false;
+            this.bgPB.Click += new System.EventHandler(this.bgPB_Click);
             // 
             // SnakeWindowForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.test_textBox);
+            this.ClientSize = new System.Drawing.Size(519, 519);
+            this.Controls.Add(this.bgPB);
             this.Name = "SnakeWindowForm";
-            this.Text = "Form1";
+            this.Text = "GMD2 - Snake";
             this.Load += new System.EventHandler(this.SnakeWindow_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.bgPB)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TextBox test_textBox;
+        private System.Windows.Forms.PictureBox bgPB;
     }
 }
 

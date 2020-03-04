@@ -18,7 +18,6 @@ namespace GMD2_Snake
             Application.SetCompatibleTextRenderingDefault(false);
 
             SnakeWindowForm swf = new SnakeWindowForm();
-            swf.Text = "GMD2 - Snake";
             swf.Show();
             swf.GameLoop();
         }

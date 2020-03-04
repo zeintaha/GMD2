@@ -13,6 +13,7 @@ namespace GMD2_Snake
 {
     public partial class SnakeWindowForm : Form
     {
+        private int matrixSize = 20;
         public SnakeWindowForm()
         {
             InitializeComponent();
@@ -37,6 +38,7 @@ namespace GMD2_Snake
                 lag += elapsed;
 
                 ProcessInput();
+                //Fixed timestep for logics, varying for rendering
                 while (lag >= MS_PER_FRAME)
                 {
                     UpdateGameLogic();
@@ -58,7 +60,8 @@ namespace GMD2_Snake
         private void RenderToScreen()
         {
             //Insert Render events here
-            test_textBox.Text = "HELLO" + DateTime.Now.ToString();
+            //test_textBox.Text = "HELLO" + DateTime.Now.ToString();
+            DrawBackgroundSquares();
         }
 
         private void UpdateGameLogic()
@@ -66,7 +69,25 @@ namespace GMD2_Snake
             //Insert Game Logic changes here
         }
 
-        private void test_textBox_TextChanged(object sender, EventArgs e)
+        private void DrawBackgroundSquares()
+        {
+            Bitmap bm = new Bitmap(bgPB.Width, bgPB.Height);
+            Graphics g = Graphics.FromImage(bm);
+            g.FillRectangle(Brushes.Gray, 0, 0, bgPB.Width, bgPB.Height);
+            Size sizeCell = new Size(bgPB.Width / matrixSize, bgPB.Height / matrixSize);
+
+            for (int x = 0; x < matrixSize; x++)
+            {
+                for (int y = 0; y < matrixSize; y++)
+                {
+                    g.FillRectangle(Brushes.LightGreen, x * sizeCell.Width + 1, y * (bgPB.Height / matrixSize) + 1, sizeCell.Width - 2, (bgPB.Height / matrixSize) - 2);
+                }
+            }
+
+            bgPB.BackgroundImage = bm;
+        }
+
+        private void bgPB_Click(object sender, EventArgs e)
         {
 
         }
