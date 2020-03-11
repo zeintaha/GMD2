@@ -6,7 +6,7 @@ namespace GMD2_Snake
     class Snake
     {
         Direction direction;
-        Boolean canChangeDirection = true;
+        bool canChangeDirection = true;
 
         int posX;
         int posY;
