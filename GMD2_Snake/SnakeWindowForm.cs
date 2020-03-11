@@ -15,20 +15,17 @@ namespace GMD2_Snake
     public partial class SnakeWindowForm : Form
     {
 
-        Boolean IsGameOver = true;
+        bool IsGameOver = true;
 
-        Int32 squareSize = 10;
-        Int32 numberSquaresX = 50;
-        Int32 numberSquaresY = 50;
+        int squareSize = 10;
+        int numberSquaresX = 50;
+        int numberSquaresY = 50;
 
         Snake snake;
 
         Image img = null;
         Graphics imgGraph = null;
         Graphics graph = null;
-
-
-
 
 
         //private int matrixSize = 20;
@@ -48,7 +45,6 @@ namespace GMD2_Snake
             snake = new Snake(numberSquaresX, numberSquaresY);
 
             ChangeGameState();
-
         }
 
         public void GameLoop()
@@ -76,8 +72,6 @@ namespace GMD2_Snake
                     RenderToScreen();
                 }
                 
-               
-
                 //To utilize the GameLoop using Windows Forms, tell the application to do the events
                 // Refresh();
                  Application.DoEvents();
@@ -92,8 +86,6 @@ namespace GMD2_Snake
         private void RenderToScreen()
         {
             //Insert Render events here
-            //test_textBox.Text = "HELLO" + DateTime.Now.ToString();
-            //DrawBackgroundSquares();
 
             if (!IsGameOver)
             {
@@ -118,24 +110,6 @@ namespace GMD2_Snake
             }
         }
 
-        //private void DrawBackgroundSquares()
-        //{
-        //    Bitmap bm = new Bitmap(bgPB.Width, bgPB.Height);
-        //    Graphics g = Graphics.FromImage(bm);
-        //    g.FillRectangle(Brushes.Gray, 0, 0, bgPB.Width, bgPB.Height);
-        //    Size sizeCell = new Size(bgPB.Width / matrixSize, bgPB.Height / matrixSize);
-
-        //    for (int x = 0; x < matrixSize; x++)
-        //    {
-        //        for (int y = 0; y < matrixSize; y++)
-        //        {
-        //            g.FillRectangle(Brushes.LightGreen, x * sizeCell.Width + 1, y * (bgPB.Height / matrixSize) + 1, sizeCell.Width - 2, (bgPB.Height / matrixSize) - 2);
-        //        }
-        //    }
-
-        //    //bgPB.BackgroundImage = bm;
-        //}
-
         private void bgPB_Click(object sender, EventArgs e)
         {
 
@@ -144,8 +118,6 @@ namespace GMD2_Snake
         private void ChangeGameState()
         {
             IsGameOver = !IsGameOver;
-
-
         }
 
         private void Draw()
@@ -169,7 +141,5 @@ namespace GMD2_Snake
 
             graph.DrawImage(img, 0, 0);
         }
-
-
     }
 }
