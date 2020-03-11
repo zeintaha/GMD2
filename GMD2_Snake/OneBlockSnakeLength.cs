@@ -23,7 +23,7 @@ namespace GMD2_Snake
             Y = p.Y;
         }
 
-        public Boolean Equals(OneBlockSnake p)
+        public bool Equals(OneBlockSnake p)
         {
             return p.X == X && p.Y == Y;
         }

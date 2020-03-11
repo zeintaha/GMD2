@@ -17,9 +17,9 @@ namespace GMD2_Snake
 
         Boolean IsGameOver = true;
 
-        Int32 squareSize = 25;
-        Int32 numberSquaresX = 20;
-        Int32 numberSquaresY = 20;
+        Int32 squareSize = 10;
+        Int32 numberSquaresX = 50;
+        Int32 numberSquaresY = 50;
 
         Snake snake;
 
@@ -161,9 +161,10 @@ namespace GMD2_Snake
             for (int i = 1; i < numberSquaresX; ++i)
                 imgGraph.DrawLine(gridPen, i * squareSize, 0, i * squareSize, squareSize * numberSquaresY);
 
+
             var snakeColor = new SolidBrush(Color.Black);
-            for (int i = 0; i < snake.BlocksOfSnake.Count; ++i)
-                imgGraph.FillRectangle(snakeColor, squareSize * snake.BlocksOfSnake[i].X, squareSize * snake.BlocksOfSnake[i].Y, squareSize - 1, squareSize - 1);
+            for (int i = 0; i < snake.blocksOfSnake.Count; ++i)
+                imgGraph.FillRectangle(snakeColor, squareSize * snake.blocksOfSnake[i].X, squareSize * snake.blocksOfSnake[i].Y, squareSize - 1, squareSize - 1);
 
 
             graph.DrawImage(img, 0, 0);
