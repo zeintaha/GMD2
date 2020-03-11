@@ -4,7 +4,9 @@
     {
         public SquarePosition(int x, int y, int width, int height)
         {
-            
+
+
+
         }
     }
 }
