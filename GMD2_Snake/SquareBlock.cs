@@ -1,13 +1,13 @@
 ﻿namespace GMD2_Snake
 {
-    public class SquarePosition
+    public class SquareBlock
     {
         int x;
         int y;
         int width;
         int height;
 
-        public SquarePosition(int x, int y, int width, int height)
+        public SquareBlock(int x, int y, int width, int height)
         {
             this.x = x;
             this.y = y;
