@@ -17,9 +17,9 @@ namespace GMD2_Snake
 
         bool IsGameOver = true;
 
-        int squareSize = 10;
-        int numberSquaresX = 50;
-        int numberSquaresY = 50;
+        int squareSize = 20;
+        int numberSquaresX = 25;
+        int numberSquaresY = 25;
 
         Snake snake;
 
@@ -61,7 +61,7 @@ namespace GMD2_Snake
                 previous = current;
                 lag += elapsed;
                 
-                ProcessInput();
+               // ProcessInput();
                 //Fixed timestep for logics, varying for rendering
                 while (lag >= MS_PER_FRAME)
                 {
@@ -78,9 +78,18 @@ namespace GMD2_Snake
             }
         }
 
-        private void ProcessInput()
+        private void ProcessInput(object sender, KeyEventArgs e)
         {
             //Insert Input events here
+
+            if (e.KeyCode == Keys.Up)
+                snake.SetDirection(Direction.Up);
+            else if (e.KeyCode == Keys.Down)
+                snake.SetDirection(Direction.Down);
+            else if (e.KeyCode == Keys.Right)
+                snake.SetDirection(Direction.Right);
+            else if (e.KeyCode == Keys.Left)
+                snake.SetDirection(Direction.Left);
         }
 
         private void RenderToScreen()
@@ -125,6 +134,7 @@ namespace GMD2_Snake
             imgGraph.FillRectangle(new SolidBrush(Color.FromArgb(192,255,192)), 0, 0, squareSize * numberSquaresX, squareSize * numberSquaresY);
 
             var gridBrush = new SolidBrush(Color.LightGray);
+            var score = new SolidBrush(Color.Black);
             var gridPen = new Pen(gridBrush);
 
             for (int i = 1; i < numberSquaresX; ++i)
@@ -134,12 +144,18 @@ namespace GMD2_Snake
                 imgGraph.DrawLine(gridPen, i * squareSize, 0, i * squareSize, squareSize * numberSquaresY);
 
 
-            var snakeColor = new SolidBrush(Color.Black);
+            var snakeColor = new SolidBrush(Color.Red);
             for (int i = 0; i < snake.blocksOfSnake.Count; ++i)
                 imgGraph.FillRectangle(snakeColor, squareSize * snake.blocksOfSnake[i].X, squareSize * snake.blocksOfSnake[i].Y, squareSize - 1, squareSize - 1);
 
+            var foodColor = new SolidBrush(Color.Blue);
+            imgGraph.FillEllipse(foodColor, squareSize * snake.headBlockSnake.X, squareSize * snake.headBlockSnake.Y, squareSize, squareSize);
+
+            imgGraph.DrawString("Snake Size: " + snake.blocksOfSnake.Count.ToString(), new Font("Arial", 10), score, 0, 0);
 
             graph.DrawImage(img, 0, 0);
         }
+
+
     }
 }

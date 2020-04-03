@@ -35,8 +35,8 @@
             // bgPB
             // 
             this.bgPB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.bgPB.Location = new System.Drawing.Point(16, 15);
-            this.bgPB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bgPB.Location = new System.Drawing.Point(12, 13);
+            this.bgPB.Margin = new System.Windows.Forms.Padding(4);
             this.bgPB.Name = "bgPB";
             this.bgPB.Size = new System.Drawing.Size(667, 615);
             this.bgPB.TabIndex = 0;
@@ -49,10 +49,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(692, 639);
             this.Controls.Add(this.bgPB);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "SnakeWindowForm";
             this.Text = "GMD2 - Snake";
             this.Load += new System.EventHandler(this.SnakeWindow_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ProcessInput);
             ((System.ComponentModel.ISupportInitialize)(this.bgPB)).EndInit();
             this.ResumeLayout(false);
 
