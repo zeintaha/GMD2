@@ -18,19 +18,22 @@ namespace GMD2_Snake
             this.posX = posX;
             this.posY = posY;
             snakeDirection = new SnakeDirection(Direction.Up);
-
             random = new Random();
             blocksOfSnake = new List<OneBlockSnake>();
             headBlockSnake = new OneBlockSnake(0, 0);
-            CreateNewFood();
 
+            CreateNewFood();
+            CreateSnake();
+        }
+
+        void CreateSnake() 
+        {
             AddSnakeTail(posX / 2 + 1, posY / 2);
             AddSnakeTail(posX / 2 + 0, posY / 2);
             AddSnakeTail(posX / 2 - 1, posY / 2);
             AddSnakeTail(posX / 2 - 2, posY / 2);
             AddSnakeTail(posX / 2 - 3, posY / 2);
         }
-
 
         public void ChangeSnakeDirection(KeyEventArgs e) 
         {
