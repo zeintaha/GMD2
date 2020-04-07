@@ -1,11 +1,11 @@
 ﻿namespace GMD2_Snake
 {
-    class SnakeMovement
+    class SnakeDirection
     {
         Direction currentDirection;
         bool canChangeDirection = true;
 
-        public SnakeMovement(Direction currentDirection)
+        public SnakeDirection(Direction currentDirection)
         {
             this.currentDirection = currentDirection;
         }
@@ -20,22 +20,22 @@
             this.canChangeDirection = canChangeDirection;
         }
 
-        public void AttemptToMoveUp()
+        public void AttemptToLookUp()
         {
             AttemptToChangeDirection(Direction.Up);
         }
 
-        public void AttemptToMoveDown()
+        public void AttemptToLookDown()
         {
             AttemptToChangeDirection(Direction.Down);
         }
 
-        public void AttemptToMoveRight()
+        public void AttemptToLookRight()
         {
             AttemptToChangeDirection(Direction.Right);
         }
 
-        public void AttemptToMoveLeft()
+        public void AttemptToLookLeft()
         {
             AttemptToChangeDirection(Direction.Left);
         }

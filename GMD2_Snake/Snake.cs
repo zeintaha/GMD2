@@ -13,13 +13,13 @@ namespace GMD2_Snake
 
         public OneBlockSnake headBlockSnake;
         public List<OneBlockSnake> blocksOfSnake;
-        private SnakeMovement snakeMovement;
+        private SnakeDirection snakeDirection;
 
         public Snake(int posX, int posY)
         {
             this.posX = posX;
             this.posY = posY;
-            snakeMovement = new SnakeMovement(Direction.Right);
+            snakeDirection = new SnakeDirection(Direction.Right);
 
             randomVal = new Random();
             blocksOfSnake = new List<OneBlockSnake>();
@@ -33,19 +33,19 @@ namespace GMD2_Snake
             blocksOfSnake.Add(new OneBlockSnake(this.posX / 2 - 3, posY / 2));
         }
 
-        public void MoveSnake(KeyEventArgs e) 
+        public void ChangeSnakeDirection(KeyEventArgs e) 
         {
             if (e.KeyCode == Keys.Up || e.KeyCode == Keys.W)
-                snakeMovement.AttemptToMoveUp();
+                snakeDirection.AttemptToLookUp();
 
             else if (e.KeyCode == Keys.Down || e.KeyCode == Keys.S)
-                snakeMovement.AttemptToMoveDown();
+                snakeDirection.AttemptToLookDown();
 
             else if (e.KeyCode == Keys.Right || e.KeyCode == Keys.D)
-                snakeMovement.AttemptToMoveRight();
+                snakeDirection.AttemptToLookRight();
 
             else if (e.KeyCode == Keys.Left || e.KeyCode == Keys.A)
-                snakeMovement.AttemptToMoveLeft();
+                snakeDirection.AttemptToLookLeft();
         }
 
 
@@ -56,26 +56,47 @@ namespace GMD2_Snake
             for (int i = count - 1; i > 0; --i)
                 blocksOfSnake[i].Set(blocksOfSnake[i - 1]);
 
-            switch (snakeMovement.GetCurrentDirection())
+            switch (snakeDirection.GetCurrentDirection())
             {
                 case Direction.Left:
-                    blocksOfSnake[0].X = (blocksOfSnake[0].X + posX - 1) % posX;
+                    MoveLeft();
                     break;
                 case Direction.Right:
-                    blocksOfSnake[0].X = (blocksOfSnake[0].X + 1) % posX;
+                    MoveRight();
                     break;
                 case Direction.Up:
-                    blocksOfSnake[0].Y = (blocksOfSnake[0].Y + posY - 1) % posY;
+                    MoveUp();
                     break;
                 case Direction.Down:
-                    blocksOfSnake[0].Y = (blocksOfSnake[0].Y + 1) % posY;
+                    MoveDown();
                     break;
             }
 
             if (CanEat())
                 FinishEating();
-            snakeMovement.SetCanChangeDirection(true);
+            snakeDirection.SetCanChangeDirection(true);
         }
+
+        void MoveLeft() 
+        {
+            blocksOfSnake[0].X = (blocksOfSnake[0].X + posX - 1) % posX;
+        }
+
+        void MoveRight() 
+        {
+            blocksOfSnake[0].X = (blocksOfSnake[0].X + 1) % posX;
+        }
+
+        void MoveUp() 
+        {
+            blocksOfSnake[0].Y = (blocksOfSnake[0].Y + posY - 1) % posY;
+        }
+
+        void MoveDown()
+        {
+            blocksOfSnake[0].Y = (blocksOfSnake[0].Y + 1) % posY;
+        }
+
 
         private bool CanEat()
         {

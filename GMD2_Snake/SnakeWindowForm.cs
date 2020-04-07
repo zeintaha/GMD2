@@ -75,7 +75,7 @@ namespace GMD2_Snake
         private void ProcessInput(object sender, KeyEventArgs e)
         {
             //Insert Input events here
-            snake.MoveSnake(e);
+            snake.ChangeSnakeDirection(e);
         }
 
         private void RenderToScreen()
