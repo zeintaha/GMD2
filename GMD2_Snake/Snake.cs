@@ -24,12 +24,13 @@ namespace GMD2_Snake
             headBlockSnake = new OneBlockSnake(0, 0);
             CreateNewFood();
 
-            blocksOfSnake.Add(new OneBlockSnake(this.posX / 2 + 1, posY / 2));
-            blocksOfSnake.Add(new OneBlockSnake(this.posX / 2 + 0, posY / 2));
-            blocksOfSnake.Add(new OneBlockSnake(this.posX / 2 - 1, posY / 2));
-            blocksOfSnake.Add(new OneBlockSnake(this.posX / 2 - 2, posY / 2));
-            blocksOfSnake.Add(new OneBlockSnake(this.posX / 2 - 3, posY / 2));
+            AddSnakeTail(posX / 2 + 1, posY / 2);
+            AddSnakeTail(posX / 2 + 0, posY / 2);
+            AddSnakeTail(posX / 2 - 1, posY / 2);
+            AddSnakeTail(posX / 2 - 2, posY / 2);
+            AddSnakeTail(posX / 2 - 3, posY / 2);
         }
+
 
         public void ChangeSnakeDirection(KeyEventArgs e) 
         {
@@ -59,6 +60,11 @@ namespace GMD2_Snake
             if (CanEat())
                 FinishEating();
             snakeDirection.SetCanChangeDirection(true);
+        }
+
+        void AddSnakeTail(int x, int y) 
+        {
+            blocksOfSnake.Add(new OneBlockSnake(x, y));
         }
 
         void MoveTowardsDirection() 
@@ -125,7 +131,7 @@ namespace GMD2_Snake
             var count = blocksOfSnake.Count;
             var last = blocksOfSnake[count - 1];
 
-            blocksOfSnake.Add(new OneBlockSnake(last.X, last.Y));
+            AddSnakeTail(last.X, last.Y);
             CreateNewFood();
         }
 
