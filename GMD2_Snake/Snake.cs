@@ -8,20 +8,18 @@ namespace GMD2_Snake
     {
         int posX;
         int posY;
-
-        Random randomVal;
-
+        readonly Random random;
         public OneBlockSnake headBlockSnake;
         public List<OneBlockSnake> blocksOfSnake;
-        private SnakeDirection snakeDirection;
+        private readonly SnakeDirection snakeDirection;
 
         public Snake(int posX, int posY)
         {
             this.posX = posX;
             this.posY = posY;
-            snakeDirection = new SnakeDirection(Direction.Right);
+            snakeDirection = new SnakeDirection(Direction.Up);
 
-            randomVal = new Random();
+            random = new Random();
             blocksOfSnake = new List<OneBlockSnake>();
             headBlockSnake = new OneBlockSnake(0, 0);
             CreateNewFood();
@@ -97,6 +95,17 @@ namespace GMD2_Snake
             blocksOfSnake[0].Y = (blocksOfSnake[0].Y + 1) % posY;
         }
 
+        public bool IsCrossed()
+        {
+            var count = blocksOfSnake.Count;
+
+            for (int i = 1; i < count; ++i)
+                if (blocksOfSnake[0].Equals(blocksOfSnake[i]))
+                    return true;
+
+            return false;
+        }
+
 
         private bool CanEat()
         {
@@ -121,8 +130,8 @@ namespace GMD2_Snake
 
             while (newFood)
             {
-                headBlockSnake.X = randomVal.Next() % posX;
-                headBlockSnake.Y = randomVal.Next() % posY;
+                headBlockSnake.X = random.Next() % posX;
+                headBlockSnake.Y = random.Next() % posY;
                 newFood = false;
 
                 var count = blocksOfSnake.Count;
@@ -130,17 +139,6 @@ namespace GMD2_Snake
                     if (blocksOfSnake[i].Equals(headBlockSnake))
                         newFood = true;
             }
-        }
-
-        public bool IsCrossed()
-        {
-            var count = blocksOfSnake.Count;
-
-            for (int i = 1; i < count; ++i)
-                if (blocksOfSnake[0].Equals(blocksOfSnake[i]))
-                    return true;
-
-            return false;
         }
     }
 }

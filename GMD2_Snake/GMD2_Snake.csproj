@@ -49,7 +49,7 @@
     <Compile Include="Direction.cs" />
     <Compile Include="OneBlockSnakeLength.cs" />
     <Compile Include="Snake.cs" />
-    <Compile Include="SnakeMovement.cs" />
+    <Compile Include="SnakeDirection.cs" />
     <Compile Include="SnakeWindowForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -58,8 +58,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SquareBlock.cs" />
-    <Compile Include="SquareBlockManager.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

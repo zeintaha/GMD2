@@ -74,7 +74,7 @@ namespace GMD2_Snake
 
         private void ProcessInput(object sender, KeyEventArgs e)
         {
-            //Insert Input events here
+            //Input events here
             snake.ChangeSnakeDirection(e);
         }
 
@@ -108,28 +108,48 @@ namespace GMD2_Snake
 
         private void Draw()
         {
-            imgGraph.FillRectangle(new SolidBrush(Color.FromArgb(192,255,192)), 0, 0, squareSize * numberSquaresX, squareSize * numberSquaresY);
+            ClearDrawSpace();
+            DrawPlayspace();
+            DrawSnake();
+            DrawFood();
+            DrawUI();
 
-            var gridBrush = new SolidBrush(Color.LightGray);
+            graph.DrawImage(img, 0, 0);
+        }
+
+        void ClearDrawSpace() 
+        {
+            imgGraph.FillRectangle(new SolidBrush(Color.FromArgb(192, 255, 192)), 0, 0, squareSize * numberSquaresX, squareSize * numberSquaresY);
+        }
+
+        void DrawUI() 
+        {
             var score = new SolidBrush(Color.Black);
-            var gridPen = new Pen(gridBrush);
+            imgGraph.DrawString("Food eaten: " + (snake.blocksOfSnake.Count - 5).ToString(), new Font("Arial", 10), score, 210, 475);
+        }
 
+        void DrawFood() 
+        {
+            var foodColor = new SolidBrush(Color.Blue);
+            imgGraph.FillEllipse(foodColor, squareSize * snake.headBlockSnake.X, squareSize * snake.headBlockSnake.Y, squareSize, squareSize);
+        }
+
+        private void DrawSnake() 
+        {
+            var snakeColor = new SolidBrush(Color.Red);
+            for (int i = 0; i < snake.blocksOfSnake.Count; ++i)
+                imgGraph.FillRectangle(snakeColor, squareSize * snake.blocksOfSnake[i].X, squareSize * snake.blocksOfSnake[i].Y, squareSize - 1, squareSize - 1);
+        }
+
+        private void DrawPlayspace() 
+        {
+            var gridBrush = new SolidBrush(Color.LightGray);
+            var gridPen = new Pen(gridBrush);
             for (int i = 1; i < numberSquaresX; ++i)
                 imgGraph.DrawLine(gridPen, 0, i * squareSize, squareSize * numberSquaresX, i * squareSize);
 
             for (int i = 1; i < numberSquaresX; ++i)
                 imgGraph.DrawLine(gridPen, i * squareSize, 0, i * squareSize, squareSize * numberSquaresY);
-
-
-            var snakeColor = new SolidBrush(Color.Red);
-            for (int i = 0; i < snake.blocksOfSnake.Count; ++i)
-                imgGraph.FillRectangle(snakeColor, squareSize * snake.blocksOfSnake[i].X, squareSize * snake.blocksOfSnake[i].Y, squareSize - 1, squareSize - 1);
-
-            var foodColor = new SolidBrush(Color.Blue);
-            imgGraph.FillEllipse(foodColor, squareSize * snake.headBlockSnake.X, squareSize * snake.headBlockSnake.Y, squareSize, squareSize);
-
-            imgGraph.DrawString("Food eaten: " + (snake.blocksOfSnake.Count-5).ToString(), new Font("Arial", 10), score, 210, 475);
-            graph.DrawImage(img, 0, 0);
         }
     }
 }
