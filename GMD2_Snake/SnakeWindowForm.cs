@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
@@ -83,30 +77,29 @@ namespace GMD2_Snake
             //Insert Input events here
             if (e.KeyCode == Keys.Up || e.KeyCode == Keys.W)
                 snake.AttemptToMoveUp();
+
             else if (e.KeyCode == Keys.Down || e.KeyCode == Keys.S)
                 snake.AttemptToMoveDown();
+
             else if (e.KeyCode == Keys.Right || e.KeyCode == Keys.D)
                 snake.AttemptToMoveRight();
+
             else if (e.KeyCode == Keys.Left || e.KeyCode == Keys.A)
                 snake.AttemptToMoveLeft();
         }
 
         private void RenderToScreen()
         {
-            //Insert Render events here
-
+            //Render events here
             if (!IsGameOver)
-            {
-                
+            {               
                 Draw();
-
             }
         }
 
         private void UpdateGameLogic()
         {
-            //Insert Game Logic changes here
-
+            //Game Logic changes here
             if (!IsGameOver)
             {
                 snake.Move();
@@ -145,7 +138,7 @@ namespace GMD2_Snake
             var foodColor = new SolidBrush(Color.Blue);
             imgGraph.FillEllipse(foodColor, squareSize * snake.headBlockSnake.X, squareSize * snake.headBlockSnake.Y, squareSize, squareSize);
 
-            imgGraph.DrawString("Snake Size: " + snake.blocksOfSnake.Count.ToString(), new Font("Arial", 10), score, 0, 0);
+            imgGraph.DrawString("Food eaten: " + (snake.blocksOfSnake.Count-5).ToString(), new Font("Arial", 10), score, 210, 475);
 
             graph.DrawImage(img, 0, 0);
         }
