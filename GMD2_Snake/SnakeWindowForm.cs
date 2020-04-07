@@ -81,10 +81,7 @@ namespace GMD2_Snake
         private void RenderToScreen()
         {
             //Render events here
-            if (!IsGameOver)
-            {               
-                Draw();
-            }
+            Draw();
         }
 
         private void UpdateGameLogic()
@@ -108,12 +105,12 @@ namespace GMD2_Snake
 
         private void Draw()
         {
+
             ClearDrawSpace();
             DrawPlayspace();
             DrawSnake();
             DrawFood();
             DrawUI();
-
             graph.DrawImage(img, 0, 0);
         }
 
@@ -124,8 +121,11 @@ namespace GMD2_Snake
 
         void DrawUI() 
         {
-            var score = new SolidBrush(Color.Black);
-            imgGraph.DrawString("Food eaten: " + (snake.blocksOfSnake.Count - 5).ToString(), new Font("Arial", 10), score, 210, 475);
+            imgGraph.DrawString("Food eaten: " + (snake.blocksOfSnake.Count - 5).ToString(), new Font("Arial", 10), new SolidBrush(Color.Black), 210, 475);
+            if (IsGameOver)
+            {
+                imgGraph.DrawString("GAME OVER", new Font("Arial", 20), new SolidBrush(Color.Black), 175, 225);
+            }
         }
 
         void DrawFood() 
