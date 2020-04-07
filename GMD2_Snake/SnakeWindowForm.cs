@@ -131,14 +131,14 @@ namespace GMD2_Snake
         void DrawFood() 
         {
             var foodColor = new SolidBrush(Color.Blue);
-            imgGraph.FillEllipse(foodColor, squareSize * snake.headBlockSnake.X, squareSize * snake.headBlockSnake.Y, squareSize, squareSize);
+            imgGraph.FillEllipse(foodColor, squareSize * snake.snakeHead.PosX, squareSize * snake.snakeHead.PosY, squareSize, squareSize);
         }
 
         private void DrawSnake() 
         {
             var snakeColor = new SolidBrush(Color.Red);
             for (int i = 0; i < snake.blocksOfSnake.Count; ++i)
-                imgGraph.FillRectangle(snakeColor, squareSize * snake.blocksOfSnake[i].X, squareSize * snake.blocksOfSnake[i].Y, squareSize - 1, squareSize - 1);
+                imgGraph.FillRectangle(snakeColor, squareSize * snake.blocksOfSnake[i].PosX, squareSize * snake.blocksOfSnake[i].PosY, squareSize - 1, squareSize - 1);
         }
 
         private void DrawPlayspace() 

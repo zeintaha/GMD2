@@ -6,12 +6,13 @@ namespace GMD2_Snake
 {
     class Snake
     {
-        int posX;
-        int posY;
-        readonly Random random;
-        public OneBlockSnake headBlockSnake;
-        public List<OneBlockSnake> blocksOfSnake;
-        private readonly SnakeDirection snakeDirection;
+        public SnakeBodyBlock snakeHead;
+        public List<SnakeBodyBlock> blocksOfSnake;
+
+        readonly int posX;
+        readonly int posY;
+        readonly Random random;        
+        readonly SnakeDirection snakeDirection;
 
         public Snake(int posX, int posY)
         {
@@ -19,8 +20,8 @@ namespace GMD2_Snake
             this.posY = posY;
             snakeDirection = new SnakeDirection(Direction.Up);
             random = new Random();
-            blocksOfSnake = new List<OneBlockSnake>();
-            headBlockSnake = new OneBlockSnake(0, 0);
+            blocksOfSnake = new List<SnakeBodyBlock>();
+            snakeHead = new SnakeBodyBlock(0, 0);
 
             CreateNewFood();
             CreateSnake();
@@ -67,7 +68,7 @@ namespace GMD2_Snake
 
         void AddSnakeTail(int x, int y) 
         {
-            blocksOfSnake.Add(new OneBlockSnake(x, y));
+            blocksOfSnake.Add(new SnakeBodyBlock(x, y));
         }
 
         void MoveTowardsDirection() 
@@ -91,22 +92,22 @@ namespace GMD2_Snake
 
         void MoveLeft() 
         {
-            blocksOfSnake[0].X = (blocksOfSnake[0].X + posX - 1) % posX;
+            blocksOfSnake[0].PosX = (blocksOfSnake[0].PosX + posX - 1) % posX;
         }
 
         void MoveRight() 
         {
-            blocksOfSnake[0].X = (blocksOfSnake[0].X + 1) % posX;
+            blocksOfSnake[0].PosX = (blocksOfSnake[0].PosX + 1) % posX;
         }
 
         void MoveUp() 
         {
-            blocksOfSnake[0].Y = (blocksOfSnake[0].Y + posY - 1) % posY;
+            blocksOfSnake[0].PosY = (blocksOfSnake[0].PosY + posY - 1) % posY;
         }
 
         void MoveDown()
         {
-            blocksOfSnake[0].Y = (blocksOfSnake[0].Y + 1) % posY;
+            blocksOfSnake[0].PosY = (blocksOfSnake[0].PosY + 1) % posY;
         }
 
         public bool IsCrossed()
@@ -120,10 +121,9 @@ namespace GMD2_Snake
             return false;
         }
 
-
         private bool CanEat()
         {
-            if (blocksOfSnake[0].Equals(headBlockSnake))
+            if (blocksOfSnake[0].Equals(snakeHead))
                 return true;
 
             return false;
@@ -134,7 +134,7 @@ namespace GMD2_Snake
             var count = blocksOfSnake.Count;
             var last = blocksOfSnake[count - 1];
 
-            AddSnakeTail(last.X, last.Y);
+            AddSnakeTail(last.PosX, last.PosY);
             CreateNewFood();
         }
 
@@ -144,13 +144,13 @@ namespace GMD2_Snake
 
             while (newFood)
             {
-                headBlockSnake.X = random.Next() % posX;
-                headBlockSnake.Y = random.Next() % posY;
+                snakeHead.PosX = random.Next() % posX;
+                snakeHead.PosY = random.Next() % posY;
                 newFood = false;
 
                 var count = blocksOfSnake.Count;
                 for (int i = 0; i < count; ++i)
-                    if (blocksOfSnake[i].Equals(headBlockSnake))
+                    if (blocksOfSnake[i].Equals(snakeHead))
                         newFood = true;
             }
         }
