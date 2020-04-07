@@ -99,18 +99,38 @@ namespace GMD2_Snake
             }
         }
 
-        public void SetDirection(Direction direction)
+        public void AttemptToMoveUp() 
+        {
+            SetDirection(Direction.Up);
+        }
+
+        public void AttemptToMoveDown()
+        {
+            SetDirection(Direction.Down);
+        }
+
+        public void AttemptToMoveRight()
+        {
+            SetDirection(Direction.Right);
+        }
+
+        public void AttemptToMoveLeft()
+        {
+            SetDirection(Direction.Left);
+        }
+
+        private void SetDirection(Direction direction)
         {
             if (canChangeDirection)
             {
                 if (this.direction == Direction.Left && direction == Direction.Right)
-                    return;
+                    return; //Uneligible move
                 if (this.direction == Direction.Right && direction == Direction.Left)
-                    return;
+                    return; //Uneligible move
                 if (this.direction == Direction.Up && direction == Direction.Down)
-                    return;
+                    return; //Uneligible move
                 if (this.direction == Direction.Down && direction == Direction.Up)
-                    return;
+                    return;  //Uneligible move
 
                 this.direction = direction;
                 canChangeDirection = false;

@@ -61,7 +61,7 @@ namespace GMD2_Snake
                 previous = current;
                 lag += elapsed;
                 
-               // ProcessInput();
+                //ProcessInput();
                 //Fixed timestep for logics, varying for rendering
                 while (lag >= MS_PER_FRAME)
                 {
@@ -81,15 +81,14 @@ namespace GMD2_Snake
         private void ProcessInput(object sender, KeyEventArgs e)
         {
             //Insert Input events here
-
             if (e.KeyCode == Keys.Up)
-                snake.SetDirection(Direction.Up);
+                snake.AttemptToMoveUp();
             else if (e.KeyCode == Keys.Down)
-                snake.SetDirection(Direction.Down);
+                snake.AttemptToMoveDown();
             else if (e.KeyCode == Keys.Right)
-                snake.SetDirection(Direction.Right);
+                snake.AttemptToMoveRight();
             else if (e.KeyCode == Keys.Left)
-                snake.SetDirection(Direction.Left);
+                snake.AttemptToMoveLeft();
         }
 
         private void RenderToScreen()
@@ -117,11 +116,6 @@ namespace GMD2_Snake
                     BeginInvoke(new Action(() => ChangeGameState()));
                 }
             }
-        }
-
-        private void bgPB_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void ChangeGameState()

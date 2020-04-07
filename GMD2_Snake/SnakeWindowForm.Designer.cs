@@ -41,7 +41,6 @@
             this.bgPB.Size = new System.Drawing.Size(667, 615);
             this.bgPB.TabIndex = 0;
             this.bgPB.TabStop = false;
-            this.bgPB.Click += new System.EventHandler(this.bgPB_Click);
             // 
             // SnakeWindowForm
             // 
