@@ -62,7 +62,7 @@ namespace GMD2_Snake
             MoveTowardsDirection();
 
             if (CanEat())
-                FinishEating();
+                EatFood();
             snakeDirection.SetCanChangeDirection(true);
         }
 
@@ -126,10 +126,10 @@ namespace GMD2_Snake
             if (blocksOfSnake[0].Equals(snakeHead))
                 return true;
 
-            return false;
+            else return false;
         }
 
-        private void FinishEating()
+        private void EatFood()
         {
             var count = blocksOfSnake.Count;
             var last = blocksOfSnake[count - 1];

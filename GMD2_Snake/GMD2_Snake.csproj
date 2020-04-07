@@ -47,7 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Direction.cs" />
-    <Compile Include="OneBlockSnakeLength.cs" />
+    <Compile Include="SnakeBodyBlock.cs" />
     <Compile Include="Snake.cs" />
     <Compile Include="SnakeDirection.cs" />
     <Compile Include="SnakeWindowForm.cs">
