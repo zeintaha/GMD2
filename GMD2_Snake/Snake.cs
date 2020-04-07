@@ -54,6 +54,15 @@ namespace GMD2_Snake
             for (int i = count - 1; i > 0; --i)
                 blocksOfSnake[i].Set(blocksOfSnake[i - 1]);
 
+            MoveTowardsDirection();
+
+            if (CanEat())
+                FinishEating();
+            snakeDirection.SetCanChangeDirection(true);
+        }
+
+        void MoveTowardsDirection() 
+        {
             switch (snakeDirection.GetCurrentDirection())
             {
                 case Direction.Left:
@@ -69,10 +78,6 @@ namespace GMD2_Snake
                     MoveDown();
                     break;
             }
-
-            if (CanEat())
-                FinishEating();
-            snakeDirection.SetCanChangeDirection(true);
         }
 
         void MoveLeft() 
