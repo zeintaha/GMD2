@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace GMD2_Snake
 {
     class Snake
     {
-        Direction direction;
-        bool canChangeDirection = true;
-
         int posX;
         int posY;
 
@@ -15,11 +13,13 @@ namespace GMD2_Snake
 
         public OneBlockSnake headBlockSnake;
         public List<OneBlockSnake> blocksOfSnake;
+        private SnakeMovement snakeMovement;
 
         public Snake(int posX, int posY)
         {
             this.posX = posX;
             this.posY = posY;
+            snakeMovement = new SnakeMovement(Direction.Right);
 
             randomVal = new Random();
             blocksOfSnake = new List<OneBlockSnake>();
@@ -31,10 +31,23 @@ namespace GMD2_Snake
             blocksOfSnake.Add(new OneBlockSnake(this.posX / 2 - 1, posY / 2));
             blocksOfSnake.Add(new OneBlockSnake(this.posX / 2 - 2, posY / 2));
             blocksOfSnake.Add(new OneBlockSnake(this.posX / 2 - 3, posY / 2));
-
-
-            direction = Direction.Right;
         }
+
+        public void MoveSnake(KeyEventArgs e) 
+        {
+            if (e.KeyCode == Keys.Up || e.KeyCode == Keys.W)
+                snakeMovement.AttemptToMoveUp();
+
+            else if (e.KeyCode == Keys.Down || e.KeyCode == Keys.S)
+                snakeMovement.AttemptToMoveDown();
+
+            else if (e.KeyCode == Keys.Right || e.KeyCode == Keys.D)
+                snakeMovement.AttemptToMoveRight();
+
+            else if (e.KeyCode == Keys.Left || e.KeyCode == Keys.A)
+                snakeMovement.AttemptToMoveLeft();
+        }
+
 
         public void Move()
         {
@@ -43,7 +56,7 @@ namespace GMD2_Snake
             for (int i = count - 1; i > 0; --i)
                 blocksOfSnake[i].Set(blocksOfSnake[i - 1]);
 
-            switch (direction)
+            switch (snakeMovement.GetCurrentDirection())
             {
                 case Direction.Left:
                     blocksOfSnake[0].X = (blocksOfSnake[0].X + posX - 1) % posX;
@@ -61,8 +74,7 @@ namespace GMD2_Snake
 
             if (CanEat())
                 FinishEating();
-
-            canChangeDirection = true;
+            snakeMovement.SetCanChangeDirection(true);
         }
 
         private bool CanEat()
@@ -96,44 +108,6 @@ namespace GMD2_Snake
                 for (int i = 0; i < count; ++i)
                     if (blocksOfSnake[i].Equals(headBlockSnake))
                         newFood = true;
-            }
-        }
-
-        public void AttemptToMoveUp() 
-        {
-            SetDirection(Direction.Up);
-        }
-
-        public void AttemptToMoveDown()
-        {
-            SetDirection(Direction.Down);
-        }
-
-        public void AttemptToMoveRight()
-        {
-            SetDirection(Direction.Right);
-        }
-
-        public void AttemptToMoveLeft()
-        {
-            SetDirection(Direction.Left);
-        }
-
-        private void SetDirection(Direction direction)
-        {
-            if (canChangeDirection)
-            {
-                if (this.direction == Direction.Left && direction == Direction.Right)
-                    return; //Uneligible move
-                if (this.direction == Direction.Right && direction == Direction.Left)
-                    return; //Uneligible move
-                if (this.direction == Direction.Up && direction == Direction.Down)
-                    return; //Uneligible move
-                if (this.direction == Direction.Down && direction == Direction.Up)
-                    return;  //Uneligible move
-
-                this.direction = direction;
-                canChangeDirection = false;
             }
         }
 

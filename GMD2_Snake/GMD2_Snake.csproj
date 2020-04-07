@@ -49,6 +49,7 @@
     <Compile Include="Direction.cs" />
     <Compile Include="OneBlockSnakeLength.cs" />
     <Compile Include="Snake.cs" />
+    <Compile Include="SnakeMovement.cs" />
     <Compile Include="SnakeWindowForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -75,17 +75,7 @@ namespace GMD2_Snake
         private void ProcessInput(object sender, KeyEventArgs e)
         {
             //Insert Input events here
-            if (e.KeyCode == Keys.Up || e.KeyCode == Keys.W)
-                snake.AttemptToMoveUp();
-
-            else if (e.KeyCode == Keys.Down || e.KeyCode == Keys.S)
-                snake.AttemptToMoveDown();
-
-            else if (e.KeyCode == Keys.Right || e.KeyCode == Keys.D)
-                snake.AttemptToMoveRight();
-
-            else if (e.KeyCode == Keys.Left || e.KeyCode == Keys.A)
-                snake.AttemptToMoveLeft();
+            snake.MoveSnake(e);
         }
 
         private void RenderToScreen()
@@ -139,10 +129,7 @@ namespace GMD2_Snake
             imgGraph.FillEllipse(foodColor, squareSize * snake.headBlockSnake.X, squareSize * snake.headBlockSnake.Y, squareSize, squareSize);
 
             imgGraph.DrawString("Food eaten: " + (snake.blocksOfSnake.Count-5).ToString(), new Font("Arial", 10), score, 210, 475);
-
             graph.DrawImage(img, 0, 0);
         }
-
-
     }
 }
