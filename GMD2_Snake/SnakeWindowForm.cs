@@ -18,7 +18,7 @@ namespace GMD2_Snake
         Snake snake;
 
         Image img = null;
-        Graphics imgGraph = null;
+        Graphics gfx = null;
         Graphics graph = null;
 
 
@@ -28,7 +28,7 @@ namespace GMD2_Snake
             InitializeComponent();
 
             img = new Bitmap(squareSize * numberSquaresX, squareSize * numberSquaresY);
-            imgGraph = Graphics.FromImage(img);
+            gfx = Graphics.FromImage(img);
             graph = bgPB.CreateGraphics();
 
             snake = new Snake(numberSquaresX, numberSquaresY);
@@ -116,29 +116,30 @@ namespace GMD2_Snake
 
         void ClearDrawSpace() 
         {
-            imgGraph.FillRectangle(new SolidBrush(Color.FromArgb(192, 255, 192)), 0, 0, squareSize * numberSquaresX, squareSize * numberSquaresY);
+            gfx.FillRectangle(new SolidBrush(Color.LightGray), 0, 0, squareSize * numberSquaresX, squareSize * numberSquaresY);
         }
 
         void DrawUI() 
         {
-            imgGraph.DrawString("Food eaten: " + (snake.blocksOfSnake.Count - 5).ToString(), new Font("Arial", 10), new SolidBrush(Color.Black), 210, 475);
+            gfx.DrawString("Food eaten: " + (snake.blocksOfSnake.Count - 5).ToString(), new Font("Arial", 10), new SolidBrush(Color.Black), 210, 475);
             if (IsGameOver)
             {
-                imgGraph.DrawString("GAME OVER", new Font("Arial", 20), new SolidBrush(Color.Black), 175, 225);
+                gfx.DrawString("GAME OVER", new Font("Arial", 20), new SolidBrush(Color.Black), 175, 225);
             }
         }
 
         void DrawFood() 
         {
-            var foodColor = new SolidBrush(Color.Blue);
-            imgGraph.FillEllipse(foodColor, squareSize * snake.snakeHead.PosX, squareSize * snake.snakeHead.PosY, squareSize, squareSize);
+            var foodColor = new SolidBrush(Color.Red);
+            gfx.FillEllipse(foodColor, squareSize * snake.snakeHead.PosX, squareSize * snake.snakeHead.PosY, squareSize, squareSize);
+            gfx.DrawImage(GMD2_Snake.Properties.Resources.apple_pixel_art, squareSize * snake.snakeHead.PosX, squareSize * snake.snakeHead.PosY, squareSize, squareSize);
         }
 
         private void DrawSnake() 
         {
-            var snakeColor = new SolidBrush(Color.Red);
+            var snakeColor = new SolidBrush(Color.Gray);
             for (int i = 0; i < snake.blocksOfSnake.Count; ++i)
-                imgGraph.FillRectangle(snakeColor, squareSize * snake.blocksOfSnake[i].PosX, squareSize * snake.blocksOfSnake[i].PosY, squareSize - 1, squareSize - 1);
+                gfx.FillRectangle(snakeColor, squareSize * snake.blocksOfSnake[i].PosX, squareSize * snake.blocksOfSnake[i].PosY, squareSize - 1, squareSize - 1);
         }
 
         private void DrawPlayspace() 
@@ -146,10 +147,11 @@ namespace GMD2_Snake
             var gridBrush = new SolidBrush(Color.LightGray);
             var gridPen = new Pen(gridBrush);
             for (int i = 1; i < numberSquaresX; ++i)
-                imgGraph.DrawLine(gridPen, 0, i * squareSize, squareSize * numberSquaresX, i * squareSize);
+                gfx.DrawLine(gridPen, 0, i * squareSize, squareSize * numberSquaresX, i * squareSize);
 
             for (int i = 1; i < numberSquaresX; ++i)
-                imgGraph.DrawLine(gridPen, i * squareSize, 0, i * squareSize, squareSize * numberSquaresY);
+                gfx.DrawLine(gridPen, i * squareSize, 0, i * squareSize, squareSize * numberSquaresY);
+            
         }
     }
 }
