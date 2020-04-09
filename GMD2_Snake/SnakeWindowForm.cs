@@ -132,7 +132,7 @@ namespace GMD2_Snake
         {
             var foodColor = new SolidBrush(Color.Red);
             gfx.FillEllipse(foodColor, squareSize * snake.snakeHead.PosX, squareSize * snake.snakeHead.PosY, squareSize, squareSize);
-            gfx.DrawImage(GMD2_Snake.Properties.Resources.apple_pixel_art, squareSize * snake.snakeHead.PosX, squareSize * snake.snakeHead.PosY, squareSize, squareSize);
+            gfx.DrawImage(Properties.Resources.apple_pixel_art, squareSize * snake.snakeHead.PosX, squareSize * snake.snakeHead.PosY, squareSize, squareSize);
         }
 
         private void DrawSnake() 
